@@ -1,38 +1,119 @@
 ﻿#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <fstream>
+#include <algorithm>
+
+// Память под локал переменые
+#pragma comment(linker, "/STACK:16777216")
+
 using namespace std;
+
 int main()
 {
+	//int a[100000]; // Ститическое объявление
 
-	int i = 0; int j = 0;
+	ifstream in("input.txt");
+	ofstream out("output.txt");
 
-	int n; cin >> n;
+	int n;
+	in >> n; // std::stdin
+
+	//int newA[n]; G++ может
+
+	auto a = new int[n]; // Динамическое объявление [0 ; n)
+
+
+
+	// O(n^2)
+
+
+	//for (int i = 0; i < n; ++i)
+	//{
+
+	//	bool bl = false;
+	//	for (int j = 0; j < n - i; ++j)
+	//	{
+	//		if (a[i] < a[j])
+	//		{
+	//			bl = true;
+	//			/*int t = a[i];
+	//			a[i] = a[j];
+	//			a[j] = t;*/
+	//			if (i != j)
+	//				a[i] ^= a[j] ^= a[i] ^= a[j];
+
+
+	//		}
+
+	//	}
+	//	// if (!bl)
+	//	if (bl == false)
+	//	{
+	//		break;
+	//	}
+	//}
+
+
+
+
+	//sort()
+
+
+	//sort(); // O(n * log(n))  MSVCбыстрая G++  слияние куча
+
+
+
+	//merge();
+
+
+	//Range [0 R)
+	//Range [-100 R)
+
+	const int R = 101;
+
+	int Range[R];
+	//vector<int> Range(R);
+
+	// O(R)
+	for (int i = 0; i < R; ++i)
+		Range[i] = 0;
+
 
 	// O(n)
-
-	//O(2^n)
-
-	// O(1)
-	
-
-	// O(n ^ 2)
-
-
-	for (int i = 1; i < n; ++i)
+	for (int i = 0; i < n; ++i)
 	{
-		// 1 2 4 8 16   2^n
+		in >> a[i];
+		Range[a[i]] += 1;
+	}
 
-		std::vector<int> v(n);
-
-
-		for (int j = 0; j < pow(2, i); ++j)
+	// O(R)
+	for (int i = 0; i < R; ++i)
+	{
+		for (int j = 0; j < Range[i]; ++j)
 		{
+			out << i << " ";
 
-
-			cout << "+";
 		}
 	}
 
-	//O(log3(n)) O(log2(n)) Переход к другому
+	//O(n + R)
+
+
+
+
+
+	//for (int i = 0; i < n; ++i)
+	//{
+	//	out << a[n - i - 1] << "\n";
+	//}
+
+
+	//cout << a[5];
+
+	// C:\\prog\user\input.txt
+	// input.txt
 
 
 
@@ -42,23 +123,3 @@ int main()
 
 
 
-//
-//int main()
-//{
-//	// Time 
-//	//// Memory
-//
-//	int n;
-//	int k;
-//	std::cin >> n >> k;
-//
-//	// 1000 1000
-//
-//	// O(n)
-//	for (int i = 0; i < n; ++i)
-//	{
-//
-//
-//	}
-//	//1000
-//}
