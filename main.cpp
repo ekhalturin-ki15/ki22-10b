@@ -6,6 +6,12 @@
 #include <queue>
 
 #include <algorithm>
+#include <memory>
+/*https://learn.microsoft.com/ru-ru/cpp/c-runtime-library/find-memory-leaks-using-the-crt-library?view=msvc-170*/
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 
 // ѕам€ть под локал переменые
 #pragma comment(linker, "/STACK:16777216")
@@ -18,9 +24,6 @@ int i;
 //ifstream in("input.txt");
 //ofstream out("output.txt");
 
-
-int arrInt[342];
-
 int main()
 {
 
@@ -29,74 +32,33 @@ int main()
 	freopen_s(&IN, "input.txt", "r", stdin);
 	freopen_s(&OUT, "output.txt", "w", stdout);
 #endif // _DEBUG
-
-
-	cout << arrInt;
-	END;
-	cout << arrInt + 1;
-	END;
-
-
-	cout << arrInt[10];
-	END;
-	cout << *(arrInt+10); // ћассивы непрерывны
-	//сдвинулись на 10 * sizeof значений адреса
-	END;
-
-
-	int a;
-	cin >> a;
-
-	std::list<int> li;
-
-	//find
-	//next(li.begin(), 10);
-
-	li.push_back(12324);
-	li.push_back(a); // O(1)
-	li.push_front(a); // O(1)
-
-	std::vector<int> vi;
-	vi.push_back(a); // O(   )
-
-	vi.size();
-	vi.capacity();
-
-
-	for (int i = 0; i < 1000; ++i)
 	{
-		vi.push_back(i);
-		cout << vi.size() << " " << vi.capacity() << "\n";
+		unique_ptr<int> ptrInt;
+
+		int a;
+		cin >> a;
+
+
+		int* ptrToInt;
+
+		cout << a;
+		END;
+		cout << &a;
+		END;
+		ptrToInt = &a; // & получить адрес
+
+		cout << ptrToInt;
+		END;
+
+		cout << &ptrToInt;
+		END;
+
+		cout << *ptrToInt; // * (обратное действие &) получитьс€ значение по адресу
+		END;
+
+		char* ptrChar = new char;
+		unique_ptr<int> ptrUInt {new int}; // ƒл€ избежани€ утечек пам€ти
 	}
-
-	deque<int> d;
-	d.push_front(12312);
-
-
-	vector<int> v = { 35, 54, 100, 100, 34543, 12, -3432, 324, -345, 34 };
-
-	int pos = 3;
-	int val = 777;
-
-	vector<int> new_v;
-	new_v.resize(v.size() + 1);
-
-	//O(n) ј в списках этого не нужно
-	for (int i = 0; i < pos; ++i)
-	{
-		new_v[i] = v[i];
-	}
-	new_v[pos] = val;
-	new_v.at(pos);
-	for (int i = pos; i < v.size(); ++i)
-	{
-		new_v[i + 1] = v[i];
-	}
-
-	//ctrl k ctrl d  .clang format
-
-	//new_v = { 35, 54, 100, 777, 100, 34543, 12, -3432, 324, -345, 34 };
-
-
+	_CrtDumpMemoryLeaks();
 }
 
