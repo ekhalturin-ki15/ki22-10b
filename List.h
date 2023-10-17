@@ -1,10 +1,11 @@
 #pragma once
 
+constexpr int SIZE = 10;
 struct Node
 {
-	int iVal;
+    int   iVal;
 	Node* ptrNext;
-	//Node* ptrPrev;
+	Node* ptrPrev;
 };
 
 
@@ -14,7 +15,7 @@ public:
 
 	//shared_ptr<int> ptrBegin;
 	Node* ptrBegin;
-	Node* ptrEnd;
+	Node* ptrEnd = nullptr;
 
 
 public:

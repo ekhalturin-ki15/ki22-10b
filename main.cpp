@@ -1,45 +1,75 @@
 #include <fstream>
 #include <iostream>
-
-#include <forward_list>    // Однонаправленный
-#include <list>            // Двусвязанный
-
-#include <queue>
+#include <string>
+#include <list>
 #include <vector>
-
-#include <algorithm>
-#include <memory>
-
-#
-
-/*
-https://learn.microsoft.com/ru-ru/cpp/c-runtime-library/find-memory-leaks-using-the-crt-library?view=msvc-170
-*/
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#include <stdlib.h>
-
+#include <set>
 #include "List.h"
 
-// Память под локал переменые
-#pragma comment(linker, "/STACK:16777216")
-// #pragma warning(disable  : 4996)
-#define END cout << "\n"
 using namespace std;
 
-// ifstream in("input.txt");
-// ofstream out("output.txt");
+void Print(vector<int>& arrV) 
+{ 
+    for (int i = 0; i < arrV.size(); ++i)
+    {
+        arrV[i] = -100;
+    }
+}
+
+
+
 
 int main()
 {
+    ifstream in("input.txt");
+
 #ifdef _DEBUG
-    FILE *IN, *OUT;
-    freopen_s(&IN, "input.txt", "r", stdin);
-    freopen_s(&OUT, "output.txt", "w", stdout);
+   FILE *IN, *OUT;
+   freopen_s(&IN, "input.txt", "r", stdin);
+   freopen_s(&OUT, "output.txt", "w", stdout);
 #endif    // _DEBUG
 
-    // unique_ptr только один владелец (мьютекс)
-    // shared_ptr отслеживает все обращения (семофор)
+    vector<int> v(10000, -1);
 
-    List myObjectList;
+    Print(v);
+
+    List ls;
+
+    int a;
+    in >> a;
+    cin >> a;
+
+    const int iSize = 10;
+    list<int> li(iSize);
+
+    li.insert(li.end(), 50);
+    li.insert(li.begin(), 50);
+
+    // k
+    // 000000000
+    // 000000001
+    // 000000010
+    // 000000011
+
+    // N log N
+    for (int iSizeGr = 1; iSizeGr < iSize; iSizeGr *= 2)
+    {
+
+        //for (int i = iBlue; i < iGren;)
+        //for (int i = iGren; i < iRed;)
+    }
+    cout << "Input values";
+
+    set<int> setMy; 
+
+    list < vector<vector<int>>> listMy2;
+
+    //swap(ls.ptrBegin->iVal, ls.ptrBegin->ptrNext->iVal);
+
+    //ls.ptrBegin = ls.ptrBegin->ptrNext;
+
+
+
+
+
 }
