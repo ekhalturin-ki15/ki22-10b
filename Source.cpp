@@ -81,14 +81,15 @@ int main()
         cout << arrPrefH[i] << "\n";
     }
 
-    //long long iShiftHash = ((arrPrefH[5] - arrPrefH[1]) % iMOD + iMOD) % iMOD;
+    //long long iShiftHash = ((arrPrefH[5] - arrPrefH[2]) % iMOD + iMOD) % iMOD;
 
-    //long long iInvers = Invers(iMOD, iX * iX);
+    //long long iInvers = Invers(iMOD, iX * iX * iX);
 
     //iShiftHash = ((iShiftHash * iInvers)% iMOD + iMOD) % iMOD;
 
     //cout << iShiftHash;
     ////669942659
+      //669942659
 
   /*  for (int i = 0; i < arrPrefH.size(); ++i)
     {
@@ -101,4 +102,7 @@ int main()
     //25541
 
     
+    //Малая Теорема Ферма
+    //Бинарное возведение в степень по модулю
+
 }
