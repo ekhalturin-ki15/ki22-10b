@@ -3,24 +3,60 @@
 #include <iostream>
 using namespace std;
 
-// a^p mod M     O(log(p))
-long long BinPow(long long a, long long p, long long M)
-{
-    if (p == 0) return 1;
-    if (p == 1) return a;
+using ll = long long;
+#define ENDL cout << "\n"
+double x;
+const ll L = 0, R = 100, X = 0;
 
-    long long b = BinPow(a, p / 2, M);
-    if (p % 2 == 1)
+//Левый бин поиск
+ll LBinSearch(ll l, ll r) // [l r)
+{
+    while (l!=r-1)
     {
-        return ((((b * b) % M) * a) % M);    // ^2 + 1
+        //ll m = (r + l) / 2;
+        ll m = ((r - l) / 2) + l;
+
+        if (x < m)
+        {
+            r = m; // r)
+        }
+        //else
+        if (x >= m)
+        {
+            l = m; // [l
+        }
+        cout << "[" << l << " " << r << ")\n";
     }
-    else
-    {
-        return ((b * b) % M);    // ^2
-    }
+    if (l < x) 
+        ++l;
+    return l;
 }
 
-long long Invers(long long a, long long M) { return BinPow(a, M - 2, M); }
+
+
+// Правый бин поиск
+ll RBinSearch(ll l, ll r)    // ((l, r]
+{
+    while (l != r - 1)
+    {
+        // ll m = (r + l) / 2;
+        ll m = ((r - l) / 2) + l;
+
+        if (x <= m)
+        {
+            r = m;    // r]
+        }
+        // else
+        if (x > m)
+        {
+            l = m;    // (l
+        }
+        cout << "(" << l << " " << r << "]\n";
+    }
+
+    return r;
+}
+
 
 int main()
 {
@@ -30,44 +66,40 @@ int main()
     freopen_s(&OUT, "output.txt", "w", stdout);
 #endif    // _DEBUG
 
-    vector<long long> arrXPow;
-    long long         X = 257;
-    long long         M = 1e9 + 7;
-    vector<long long> arrPolHash;
-    string            s;
-    cin >> s;
-    arrXPow.resize(s.size());
-    arrPolHash.resize(s.size());
+    //lower_bound();
+    //upper_bound();
 
-    long long XP    = 1;
-    long long iPrev = 0;
 
-    for (int i = 0; i < s.size(); ++i)
+    vector<int> v = { 1,2,3,4,5,5,5,5,5,5,5,6,7,8,9,10,11,12,13,14 };
+    sort(v.begin(), v.end());
+
+
+   // cout << *lower_bound(v.begin(), v.end(), X);
+    ENDL;
+    // >= 5 L
+
+    auto it = lower_bound(v.begin(), v.end(), X);
+    if (it == v.end())
     {
-        arrXPow[i]            = XP;
-        long long iCurPolHash = (int(s[i]) * XP) % M;
-        iCurPolHash           = (iCurPolHash + iPrev) % M;
-        arrPolHash[i]         = iCurPolHash;
-        XP                    = (XP * X) % M;
-        iPrev                 = iCurPolHash;
+        cout << "AAAAAAAAAAAAAAAAAAAAAA";
     }
 
-    for (long long it : arrXPow) cout << it << " ";
-    cout << "\n";
-    for (long long it : arrPolHash) cout << it << " ";
 
-    long long l, r;
-    cin >> l >> r;
-
-    cout << "\n";
+    // > 5  R
+    ENDL;
 
 
-    long long m;
-    if (l)
-        m = (arrPolHash[r] - arrPolHash[l - 1] + M) % M;
-    else
-        m = arrPolHash[r];
+    for (auto it = lower_bound(v.begin(), v.end(), X);
+        it != upper_bound(v.begin(), v.end(), X); ++it)
+    {
+        cout << *it << " ";
+    }
 
-    cout << (m * Invers(arrXPow[l], M)) % M;
-    //526919761
+    cin >> x;
+
+    cout << LBinSearch(0, R);
+    ENDL;
+    cout << RBinSearch(0, R);
+    ENDL;
+
 }
