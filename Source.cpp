@@ -3,41 +3,29 @@
 #include <iostream>
 using namespace std;
 
-long long Invers(long long a, long long b)
-{
-    vector<long long> arrA = { min(a, b) };
-    vector<long long> arrB = { max(a, b) };
+// a^p mod M     O(log(p))
+long long BinPow(long long a, long long p, long long M)
+{ 
+    if (p == 1) return a;
+    if (p == 0) return 1;
 
-
-    while (a*b)
+    long long b = BinPow(a, p / 2, M);
+    if (p % 2 == 1)
     {
-        if (a > b)
-            a %= b;
-        else
-            b %= a;
-
-        arrA.push_back(min(a, b));
-        arrB.push_back(max(a, b));
+        return ((((b * b) % M) * a) % M); // ^2 + 1
     }
-
-    long long d = a + b;
-    long long x = 1, y = 0, nextX, nextY;
-
-    for (int i = arrB.size() - 2; i >= 0; --i)
+    else
     {
-        nextY = x;
-        if (((d - nextY * arrB[i]) % arrA[i]) != 0)
-            cout << "AAaaAAAaA\n";
-        nextX = (d - nextY * arrB[i]) / arrA[i];
-        x     = nextX;
-        y     = nextY;
+        return ((b * b) % M);    // ^2
     }
-
-    cout << d << " = " << arrA.front() << " * " << x << " + " << arrB.front()
-         << " * " << y << "\n";
-
-    return x;
 }
+
+
+long long TrueInv(long long a, long long M)
+{ 
+    return BinPow(a, M-2, M);
+}
+
 
 int main() 
 { 
@@ -47,62 +35,8 @@ int main()
     freopen_s(&OUT, "output.txt", "w", stdout);
 #endif    // _DEBUG
     
-    //cout << int('s');
-    //return 0;
 
-    //long long a, b;
-    //cin >> a >> b;
-    //cout << GCD(a, b);
-    //return 0;
+    cout << TrueInv(11, 1e9 + 7);
 
-    string s;
-    vector<int> arrPrefH; // Все полином хеш на префиксах
-
-
-
-    int iTemp;
-    cin >> s;
-
-    long long iCurX = 1;
-    long long iX = 257;
-    long long iMOD = 1e9 + 7;
-
-    long long iH = 0;
-
-    for (int i = 0; i < s.size(); ++i)
-    {
-        iH = (iH + s[i] * iCurX) % iMOD;
-        arrPrefH.push_back(iH);
-        iCurX = (iCurX * iX) % iMOD;
-    }
-
-      for (int i = 0; i < arrPrefH.size(); ++i)
-    {
-        cout << arrPrefH[i] << "\n";
-    }
-
-    //long long iShiftHash = ((arrPrefH[5] - arrPrefH[2]) % iMOD + iMOD) % iMOD;
-
-    //long long iInvers = Invers(iMOD, iX * iX * iX);
-
-    //iShiftHash = ((iShiftHash * iInvers)% iMOD + iMOD) % iMOD;
-
-    //cout << iShiftHash;
-    ////669942659
-      //669942659
-
-  /*  for (int i = 0; i < arrPrefH.size(); ++i)
-    {
-        cout << arrPrefH[i] << "\n";
-    }*/
-
-    //cout <<( arrPrefH[2] - arrPrefH[0]) / (iX) << "\n";
-    // Пересчёт хеша для подстроки, имея префиксы, O(1)
-    // 
-    //25541
-
-    
-    //Малая Теорема Ферма
-    //Бинарное возведение в степень по модулю
 
 }
