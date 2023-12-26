@@ -91,6 +91,10 @@ int main()
 	// Второй параметр, что храним по ключу
 	map<int, My::R> mapMy;
 
+
+	map<int, int> setMy;
+
+
 	ENDL;
 	out << mapMy[12].a;
 
