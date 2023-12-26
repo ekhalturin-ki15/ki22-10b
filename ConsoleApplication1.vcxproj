@@ -140,9 +140,7 @@
   <ItemGroup>
     <ClInclude Include="BinTree.h" />
     <ClInclude Include="List.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".clang-format" />
+    <ClInclude Include="My.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

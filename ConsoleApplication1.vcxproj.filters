@@ -43,10 +43,8 @@
     <ClInclude Include="BinTree.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".clang-format">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
+    <ClInclude Include="My.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
