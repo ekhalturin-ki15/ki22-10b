@@ -1,5 +1,8 @@
 #include <vector>
 #include <list>
+#include <map>
+#include <set>
+
 #include <iostream>
 #include <fstream>
 //#include <bits/stdc++.h>
@@ -22,10 +25,19 @@ namespace My
 	struct R
 	{
 		int a = 1, b = 2, c = 3;
+
+		bool operator<(R r)
+		{
+			return this->a < r.a;
+		}
 	};
 
 }
 
+bool operator<(My::R& l, My::R& r)
+{
+	return l.a < r.a;
+}
 ostream& operator<<(ostream& out, list<int> l)
 {
 	for (auto it = l.begin(); it != l.end(); ++it)
@@ -40,114 +52,46 @@ ostream& operator<<(ostream& out, list<int> l)
 
 int main()
 {
-	vector<int> v;
+	// operator < 
+	//set<My::R> setV;// [ 4, 30, 50,  100, 101]
+	//setV.insert({3,4,5});
+	//setV.insert({3,4,5});
+	//setV.insert({5,4,5});
+	//setV.insert({6,4,5});
+	//setV.insert({7,4,5});
 
-	for (int i = 0; i < v.size(); ++i)
+	set<int> setInt = { 4,30, 100,101 };
+	//Красное черное его высота log(n)
+
+	setInt.insert(50); // set 
+	if (setInt.count(30))
 	{
-		v[i] = i + 1;
+		out << "YES";
 	}
-
-	/*for (int i = 0; i < 500; ++i)
+	else
 	{
-		int ind = rand() % v.size();
-		out << v[ind];
-		ENDL;
-	}*/
-
-	list< My::R> lR;
-	list< vector<int> > lArrV;
-	list<int> lInt;
-
-	//lInt[50];
-
-
-	list<int>::iterator it;
-
-	it = lInt.begin();
-
-	lInt.push_back(10);
-	lInt.push_back(10);
-	lInt.push_back(10);
-	lInt.push_back(1);
-	lInt.push_back(1);
-	lInt.push_back(1);
-	lInt.push_back(1);
-
-	it = lInt.begin();
-
-
-	ENDL;
-	for (int i = 0; i < lInt.size() ;++i)
-	{
-		out << *it <<" ";
-		++it;
-	}
-
-	ENDL;
-	it = lInt.begin();
-
-	for (; it != lInt.end(); ++it)
-	{
-		out << *it << " ";
-		lInt.insert(it, 1);
-	}
-
-	ENDL;
-
-	out << lInt;
-
-
-	ENDL;
-	it = lInt.begin();
-
-	for (; it != lInt.end();)
-	{
-		out << *it << " ";
-		++it;
-		lInt.insert(it, -1);
-	}
-
-	ENDL;
-	out << lInt;
-
-	ENDL;
-
-	list<int>::reverse_iterator rit;
-	ENDL;
-	rit = lInt.rbegin();
-	for (; rit != lInt.rend();rit++)
-	{
-		out << *rit << " ";
-	}
-
-	//it = next(it, 5);
-	//it = prev(it, 5); //Не Изменяют параметр
-	//advance(it, -5); //Изменяет параметр
-
-	it = lInt.end(); 	
-	it--;
-
-	ENDL;
-	
-
-
-	for (; true; --it)
-	{
-		if (*it == -1)
-		{
-			it = lInt.erase(it);//Правее
-			--it;
-		}
-
-
-		out << *it <<" ";
-
-
-
-		if (it == lInt.begin())
-			break;
+		out <<"NO";
 	}
 
 
+	if (setInt.count(31))
+	{
+		out << "YES";
+	}
+	else
+	{
+		out << "NO";
+	}
+
+
+	setInt.erase(31);
+	setInt.erase(30);
+
+	// Первый шаблом с определённым оператором <
+	// Второй параметр, что храним по ключу
+	map<int, My::R> mapMy;
+
+	ENDL;
+	out << mapMy[12].a;
 
 }
